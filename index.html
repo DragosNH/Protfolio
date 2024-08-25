@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav class="nav">
+        <img src="images/logo.png" alt="Logo" class="logo">
+        <ul class="group-list">
+            <li class="list"><a href="#about">About Me</a></li>
+            <li class="list"><a href="#skills">Skills</a></li>
+            <li class="list"><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <h1 class="title">Dragos ENACHE</h1>
+    <h2 class="sub-title">Developper and artist</h2>
+
+    <div class="hero"></div>
+
+    <main>
+        <div id="about">
+            <h2 class="sub-title">About Me</h2>
+            <p class="text">Hi, My name is Dragos(yes, this is really my name) I am a web developper in training. I also like digital drawing and learning new stuff, for more information feel free to ask.</p>
+        </div>
+
+        <h2 class="sub-title">Skills</h2>
+        <div id="skills">
+            <div class="front">
+                <h3>Front-end:</h3>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                </ul>
+            </div>
+            <div class="back">
+                <h3>Back-end:</h3>
+                <ul>
+                    <li>PHP (kinda)</li>
+                </ul>
+            </div>
+            <div class="frameworks">
+                <h3>Frameworks:</h3>
+                <ul>
+                    <li>React</li>
+                    <li>Node.js (kinda)</li>
+                </ul>
+            </div>
+            <div class="learning">
+                <h3>Under way:</h3>
+                <ul>
+                    <li>React Native</li>
+                    <li>Three.js</li>
+                </ul>
+            </div>
+        </div>
+        <div id="contact">
+            <h2 class="sub-title">Contact:</h2>
+            <div class="contact">
+                    <a href="https://github.com/DragosNH" target="_blank"><img src="images/icons8-github-30.png" alt="github icon"></a>
+                    <a href="https://www.linkedin.com/in/ench-drgs-997764233/"><img src="images/icons8-linkedin-30.png" alt="linkedin icon"></a>
+            </div>
+
+        </div>
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.152.0/build/three.min.js"></script>
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / 400, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+
+        renderer.outputEncoding = THREE.sRGBEncoding;
+
+        renderer.setSize(window.innerWidth, 400);
+        document.querySelector(".hero").appendChild(renderer.domElement);
+
+        renderer.setClearColor(0x6AB096, 1);
+
+        const textureLoader = new THREE.TextureLoader();
+        const logoTexture = textureLoader.load("images/logo.png");
+
+        const geometry = new THREE.CircleGeometry(3, 100);
+
+        const material = new THREE.MeshBasicMaterial({
+            map: logoTexture,
+            side: THREE.DoubleSide,
+            color: 0x777777,
+        });
+
+        const circle = new THREE.Mesh(geometry, material);
+
+        scene.add(circle);
+        camera.position.set(0, 0, 5);
+
+        function animate() {
+            requestAnimationFrame(animate);
+            circle.rotation.z += 0.01;
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        window.addEventListener("resize", () => {
+            const heroElement = document.querySelector(".hero");
+            const heroHeight = heroElement.offsetHeight;
+            const heroWidth = heroElement.offsetWidth;
+
+            camera.aspect = heroWidth / heroHeight;
+            camera.updateProjectionMatrix();
+
+            renderer.setSize(heroWidth, heroHeight);
+
+            const scaleFactor = heroWidth / window.innerWidth;
+            camera.position.z = 5 / scaleFactor;
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+body{
+    background-color: rgb(61, 61, 61);
+    font-family: "Nunito", sans-serif;
+    color: #6BC0A6;
+}
+
+
+.logo{
+    width: 100px;
+}
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.group-list{
+    display: flex;
+    font-size: 25px;
+    list-style-type: none;
+}
+
+.list{
+    margin: 10px;
+}
+
+.list a{
+    text-decoration: none;
+    color: #6BC0A6;
+}
+
+
+.hero {
+    width: 100%;
+    height: 400px; 
+    margin: 0;
+    padding: 0;
+    overflow: hidden; 
+    position: relative;
+}
+
+canvas {
+    display: block;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.text{
+    width: 500px;
+}
+
+#skills{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 700px;
+}
+
+
+
+@media (max-height: 50px), screen and (orientation: portrait) {
+    .logo{
+       width: 70px; height: 70px;
+       margin-top: 20px;
+    }
+  }
+  
